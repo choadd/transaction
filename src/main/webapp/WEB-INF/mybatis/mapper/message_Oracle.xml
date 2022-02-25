@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message"> <!-- pakeging역할 -->
+	<select id="selectAll" resultType="messageVo">
+		SELECT * FROM MESSAGE
+	</select>
+	<select id="countAll" resultType="integer">
+		SELECT COUNT(*) FROM MESSAGE
+	</select>
+	<select id="countBySender" resultType="integer">
+		SELECT COUNT(*) FROM MESSAGE GROUP BY SENDER
+	</select>
+	
+	<!-- 
+		insert, update, delete ==> resultType 이 설정안됨(int로 고정되있음)
+		==> parameterType 만 설정하면 됨
+	 -->
+	 <insert id="insertOne" parameterType="messageVo">
+	 	INSERT INTO MESSAGE (SENDER, RECEIVER, CONTENT, SENDDATE) VALUES (#{sender}, #{receiver}, #{content}, sysdate)
+	 </insert>
+	 
+	 <!--  -->
+	 <select id="selectBySender" resultType="messageVo" parameterType="string">
+	 SELECT * FROM MESSAGE WHERE SENDER = #{sender}
+	 </select>
+	 
+	 <!-- 
+		Qeury 처리 시 인자가 여러개 필요하면 from 과 to 를 가지고 있는 vo 를 받아서 처리하거나
+		hashmap 을 이용하면 된다	 
+	  -->
+	 <select id="selectByPeriod" resultType="messageVo" parameterType="hashmap">
+	 	SELECT * FROM MESSAGE WHERE SENDDATE BETWEEN TO_DATE(#(from)) AND TO_DATE(#{to})
+	 </select>
+</mapper>    

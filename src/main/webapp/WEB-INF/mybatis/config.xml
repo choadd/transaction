@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 기본 설정 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="VARCHAR"/> <!-- Null을 세팅할 수 있게 해줌 -->
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="net.edupoll.kr.entity.MessageVo" alias="messageVo"/>
+		<typeAlias type="net.edupoll.kr.entity.AccountVo" alias="accountVo"/>
+		<typeAlias type="net.edupoll.kr.entity.PointVo" alias="point"/>
+	</typeAliases>
+</configuration>  

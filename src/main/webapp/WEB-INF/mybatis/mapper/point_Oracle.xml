@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="point">
+	<insert id="insertOne" parameterType="point">
+		insert into point
+		values(point_seq.nextval, #{owner}, ${pt})
+	</insert>
+	<select id="selectTotalByOwner" parameterType="String" resultType="int">
+		select sum(pt) from point where owner=#{id} 
+	</select>
+	
+</mapper>
